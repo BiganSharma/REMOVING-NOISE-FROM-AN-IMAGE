@@ -30,3 +30,14 @@ sp_05 = salt_pepper(0.5)
 
 # Store the resultant image as 'sp_05.jpg'
 cv2.imwrite('sp_05.jpg', sp_05)
+# Create our sharpening kernel, the sum of all values must equal to one for uniformity
+kernel_sharpening = np.array([[-1,-1,-1],
+                              [-1, 9,-1],
+                              [-1,-1,-1]])
+
+# Applying the sharpening kernel to the grayscale image & displaying it.
+print("\n\n--- Effects on S&P Noise Image with Probability 0.5 ---\n\n")
+
+# Applying filter on image with salt & pepper noise
+sharpened_img = cv2.filter2D(sp_05, -1, kernel_sharpening)
+cv2_imshow(sharpened_img)
