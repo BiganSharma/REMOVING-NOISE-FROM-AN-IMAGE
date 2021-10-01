@@ -53,3 +53,13 @@ def midpoint(img):
 
 print("\n\n---Effects on S&P Noise Image with Probability 0.5---\n\n")
 midpoint(sp_05)
+
+def contraharmonic_mean(img, size, Q):
+    num = np.power(img, Q + 1)
+    denom = np.power(img, Q)
+    kernel = np.full(size, 1.0)
+    result = cv2.filter2D(num, -1, kernel) / cv2.filter2D(denom, -1, kernel)
+    return result
+
+print("\n\n--- Effects on S&P Noise Image with Probability 0.5 ---\n\n")
+cv2_imshow(contraharmonic_mean(sp_05, (3,3), 0.5))
